@@ -25,6 +25,7 @@
     "modernizr": "^3.3",
     "moment": "^2.16",
     "react": "^15.3",
+    "react-collapsible": "^1.3.0",
     "react-dom": "^15.3",
     "react-inlinesvg": "^0.5",
     "react-redux": "^4.4",
