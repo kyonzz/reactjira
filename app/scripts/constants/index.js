@@ -13,6 +13,7 @@ export const ActionTypes = keyMirror({
   ON_DRAG: undefined,
   END_DRAG: undefined,
   SELECT_ISSUE: undefined,
+  SELECT_PARENT_ISSUE: undefined,
   FETCH_ISSUE_REQUEST: undefined,
   FETCH_ISSUE_SUCCESS: undefined,
   FETCH_ISSUE_FAILURE: undefined,

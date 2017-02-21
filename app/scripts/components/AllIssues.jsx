@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IssueColumn from '../containers/IssueColumn'
 import OrtherIssueColumn from '../containers/OrtherIssueColumn'
-import { fetchIssues } from '../actions'
+import { fetchIssues, selectParentIssue } from '../actions'
 import Collapsible from 'react-collapsible';
 
 class AllIssues extends Component {
@@ -36,7 +36,7 @@ class AllIssues extends Component {
         <div>
           {this.props.parentIssues ? this.props.parentIssues.map(issue =>
             <div key={issue.id} style={{ visibility: issue.id !== this.props.onChangeGroupId && this.props.onChangeGroupId !== null ? 'hidden' : 'visible' }} >
-              <Collapsible className="what" key={issue.id} trigger={<span><h5>TASK-{issue.id} > > > {issue.name}</h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p  className="class">Action creation</p></span>} antiTriggerClass="class" transitionTime={200}>
+              <Collapsible className="what" key={issue.id} trigger={<span className="inline"><h5>TASK-{issue.id} > > > {issue.name}</h5> number of child issues &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <p className="class" onClick={() => this.props.dispatch(selectParentIssue(issue.id))}>Action creation</p></span>} antiTriggerClass="class" transitionTime={200}>
                 <div className="sup">
                   <div className="newcolumn">
                     <IssueColumn filter='new' parent={issue.id} />

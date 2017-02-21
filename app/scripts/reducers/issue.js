@@ -21,7 +21,10 @@ export default {
             return { ...state, isLoading: false };
         },
         [ActionTypes.SELECT_ISSUE](state, action) {
-            return { ...state, selected: action.payload };
+            return { ...state, selectedIssue: action.payload, selectedParentIssue: null };
+        },
+        [ActionTypes.SELECT_PARENT_ISSUE](state, action) {
+            return { ...state, selectedParentIssue: action.payload, selectedIssue: null };
         },
         [ActionTypes.ON_DRAG](state, action) {
             return { ...state, onChangeGroupId: action.payload };

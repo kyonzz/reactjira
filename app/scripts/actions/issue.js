@@ -13,6 +13,13 @@ export function selectIssue(item) {
   };
 }
 
+export function selectParentIssue(item) {
+  return {
+    type: ActionTypes.SELECT_PARENT_ISSUE,
+    payload: item
+  };
+}
+
 export function selectGroupId(id) {
   return {
     type: ActionTypes.ON_DRAG,
