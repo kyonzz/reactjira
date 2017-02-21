@@ -2,6 +2,7 @@ import React from 'react';
 import Test from './Test'
 import AllIssues from './AllIssues'
 import IssueInfo from './IssueInfo'
+import ParentIssueInfo from './ParentIssueInfo'
 import CuteLoading from './CuteLoading'
 
 class Jira extends React.Component {
@@ -12,11 +13,12 @@ class Jira extends React.Component {
           <CuteLoading />
         </div>
         <div className="sup">
-          <div className="statuscolumn">
+          <div className="issuespart">
             <AllIssues />
           </div>
-          <div className="issueinfo">
+          <div className="issueinfopart">
             <IssueInfo />
+            <ParentIssueInfo />
           </div>
         </div>
       </div>
