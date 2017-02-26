@@ -130,69 +130,20 @@ a {
 
 .inline{
   display: inline;
+  }
+
+.left{
+  float: left;
 }
 
-.issuecard{
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    border: 0.5px solid lightgrey;
-    width: 100%;
-    height:120px;
-    background: white;
-    margin: 6px auto;
-
-  .priority{
-      width:50px;
-      flex-grow: 1;
-      p{
-          text-align: center;
-      }
-  }
-
-  .task {
-      vertical-align: top;
-      flex-grow: 25;
-  }
-
-  .avatar {
-      width:50px;
-      vertical-align: top;
-      flex-grow: 1;
-
-      div {
-        margin-top:5px;
-        margin-right: 5px;
-        width:60px;
-        height:60px;
-      }
-  }
-
-  .taskname{
-      color:deepskyblue;
-      text-align: left;
-      margin-top:2px;
-  }
-
-  .avatarImage{
-      width:60px;
-      height:60px;
-      object-fit: fill;
-  }
-
-  .taskinfo{
-      margin:10px;
-      width:auto;
-  }
+.right{
+  float: right;
 }
 
 .column-container{
      width:100%;
      table-layout: fixed;
      margin:0 auto;
-}
-.donecolumn .issuetitle{
-    text-decoration: line-through;
 }
 
 .container1{
@@ -240,6 +191,12 @@ a {
     width: 100%;
 }
 
+.donecolumn {
+  .issueTitle{
+    text-decoration: line-through;
+  }
+}
+
 .inProgresscolumn{
   margin: 0 10px;
 }
@@ -247,12 +204,28 @@ a {
 .issuespart{
   border: 1px solid darkgray;
   border-right: 0;
-  width: 80%;
+  width: 60%;
 }
 .issueinfopart{
-  width: 30%;
   .issueinfo{
     border: 1px solid darkgray;
+    .title hr, .title p{
+    	display: inline-block;
+        vertical-align: middle; 
+    }
+    .name{
+      display: inline-block;
+      color: lightgray;
+      margin-right: 10px;
+    }
+    .value{
+      display: inline-block;
+    }
+  }
+  .avatarImage{
+      width:30px;
+      height:30px;
+      object-fit: fill;
   }
   .issueinfo-header{
     background-color: whitesmoke;
@@ -272,14 +245,8 @@ ul {
 }
 
 .inline{
-  h5,p,img{
+  h5,p{
   display: inline;
-  }
-
-  img{
-    object-fit: fill;
-    width:50px;
-    height: 50px;
   }
 }
 
@@ -320,4 +287,42 @@ ul {
       transition: transform 300ms; }
     .Collapsible__trigger.is-open:after {
       transform: rotateZ(180deg); }
+}
+
+hr.style1 { 
+  margin-bottom: 20px;
+  margin-right: 50px;
+  border-top: 1px solid #8c8b8b; 
+} 
+hr.style1::after { 
+  display: inline-block; 
+  position: relative; 
+  top: -12px; 
+  left: 20px; 
+  padding: 0 3px; 
+  background: white; 
+  color: #000; 
+  font-size: 18px; 
+}
+
+.Title::after{
+  content:'Title';
+}
+.People::after{
+  content:'People';
+}
+.Dates::after{
+  content:'Dates';
+}
+.Description::after{
+  content:'Description';
+}
+.Comments::after{
+  content:'Comments';
+}
+.Attachments::after{
+  content:'Attachments';
+}
+.Sub-tasks::after{
+  content:'Sub-tasks';
 }

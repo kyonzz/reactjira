@@ -14,16 +14,16 @@ const renameStatus = (status) => {
   }
 }
 
+const formatDate = (date) => {
+  return (new Date(date)).toLocaleString()
+}
+
 class IssueInfo extends Component {
   constructor(props) {
     super(props);
   }
-  render() {
-
-    const formatDate = (date) => {
-      return (new Date(date)).toLocaleString()
-    }
-
+  render() 
+  {
     return (
       <div>
         {this.props.issues.map(issue =>

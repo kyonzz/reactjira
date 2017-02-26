@@ -1,0 +1,13 @@
+.dropzone{
+  width: 300px;
+  height: 100px;
+  border: 2px dashed black;
+}
+.dropzoneactive{
+  border: 2px dashed green;
+  background-color: gray;
+}
+.imagepreview{
+  max-height:100px;
+  margin: 5px;
+}
