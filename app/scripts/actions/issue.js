@@ -1,6 +1,6 @@
 import { ActionTypes } from 'constants/index';
 
-export function fetchIssues() {
+export function requestIssues() {
   return {
     type: ActionTypes.FETCH_ISSUE_REQUEST
   };

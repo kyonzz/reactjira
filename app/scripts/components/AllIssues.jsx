@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IssueColumn from '../containers/IssueColumn'
 import OrtherIssueColumn from '../containers/OrtherIssueColumn'
-import { fetchIssues, selectParentIssue } from '../actions'
+import { requestIssues, selectParentIssue } from '../actions'
 import Collapsible from 'react-collapsible';
 
 class AllIssues extends Component {
@@ -10,7 +10,7 @@ class AllIssues extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(fetchIssues())
+    this.props.dispatch(requestIssues())
   }
 
   render() {
@@ -55,7 +55,7 @@ class AllIssues extends Component {
           {/*orther issue*/}
           <div style={{ display: this.props.isLoading ? 'none' : 'block', visibility: "superscretidforanotherissuegroup" !== this.props.onChangeGroupId && this.props.onChangeGroupId !== null ? 'hidden' : 'visible' }}>
             {/*{this.props.ortherIssues ?*/}
-            <Collapsible trigger="Orther Issues" transitionTime={200}>
+            <Collapsible open={true} trigger="Orther Issues" transitionTime={200}>
               <div className="sup">
                 <div className="newcolumn">
                   <OrtherIssueColumn filter='new' parent="superscretidforanotherissuegroup" />

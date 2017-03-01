@@ -11,7 +11,6 @@ class Issue extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <table className="issuecard" key={this.props.id} classID={this.props.id} onClick={this.props.onClick}>
