@@ -39,7 +39,7 @@ if (args[0] && args[0] === 'test:ui') {
 } else {
   envPlugin = new BrowserSyncPlugin({
     host: getIPAddress(),
-    port: 3000,
+    port: 9000,
     notify: true,
     logPrefix: 'sia',
     proxy: 'http://localhost:3030'
@@ -52,7 +52,7 @@ var config = merge.smart(webpackConfig, {
   cache: true,
   output: {
     filename: '[name].js',
-    publicPath: 'http://localhost:' + (args[0] === 'test:ui' ? 3030 : 3000) + '/'
+    publicPath: 'http://localhost:' + (args[0] === 'test:ui' ? 3030 : 9000) + '/'
   },
   entry: {
     bundle: [

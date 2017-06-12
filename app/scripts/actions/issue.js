@@ -6,6 +6,21 @@ export function requestIssues() {
   };
 }
 
+export function requestSingleIssue(id) {
+  return {
+    type: ActionTypes.FETCH_SINGLE_ISSUE_REQUEST,
+    payload: id
+  };
+}
+
+export function changeIssueStatus(id, status) {
+  return {
+    type: ActionTypes.CHANGE_ISSUE_STATUS,
+    id,
+    status
+  };
+}
+
 export function selectIssue(item) {
   return {
     type: ActionTypes.SELECT_ISSUE,

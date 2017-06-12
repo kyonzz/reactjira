@@ -1,26 +1,20 @@
-import { REHYDRATE } from 'redux-persist/constants';
-import { createReducer } from 'utils/helpers';
+import { REHYDRATE } from "redux-persist/constants";
+import { createReducer } from "utils/helpers";
 
-import { ActionTypes } from 'constants/index';
+import { ActionTypes } from "constants/index";
 
 export const appState = {
   notifications: {
     visible: false,
-    message: '',
-    status: '',
+    message: "",
+    status: "",
     withTimeout: true
   },
-  rehydrated: false
+  redirectUrl: "/dashboard"
 };
 
 export default {
   app: createReducer(appState, {
-    [REHYDRATE](state, action) {
-      return Object.assign({}, state, action.payload.app, {
-        notifications: appState.notifications,
-        rehydrated: true
-      });
-    },
     [ActionTypes.SHOW_ALERT](state, action) {
       const notifications = {
         ...state.notifications,
@@ -31,6 +25,9 @@ export default {
       };
 
       return { ...state, notifications };
+    },
+    [ActionTypes.SET_REDIRECT_URL](state, action) {
+      return { ...state, redirectUrl: action.payload };
     },
     [ActionTypes.HIDE_ALERT](state) {
       const notifications = {

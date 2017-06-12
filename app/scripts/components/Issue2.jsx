@@ -18,7 +18,7 @@ class Issue2 extends Component {
 
   render() {
     return (
-      <table className="issuecard2" key={this.props.id} classID={this.props.id}>
+      <table className="issuecard2" onClick={this.props.onClick} key={this.props.id} classID={this.props.id}>
         <tbody>
           <tr>
             <td>

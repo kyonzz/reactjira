@@ -3,9 +3,9 @@
  * @desc App Actions
  */
 
-import { push } from 'react-router-redux';
+import { push } from "react-router-redux";
 
-import { ActionTypes } from 'constants/index';
+import { ActionTypes } from "constants/index";
 
 /**
  * Change route path.
@@ -52,5 +52,12 @@ export function showAlert(status, message, withTimeout = true) {
 export function hideAlert() {
   return {
     type: ActionTypes.HIDE_ALERT
+  };
+}
+
+export function setRedirectUrl(url) {
+  return {
+    type: ActionTypes.SET_REDIRECT_URL,
+    payload: url
   };
 }

@@ -1,25 +1,23 @@
-import { REHYDRATE } from 'redux-persist/constants';
-import { createReducer } from 'utils/helpers';
+import { REHYDRATE } from "redux-persist/constants";
+import { createReducer } from "utils/helpers";
 
-import { ActionTypes } from 'constants/index';
+import { ActionTypes } from "constants/index";
 
 export const userState = {
-  logged: false,
+  isLoggedIn: false,
   rehydrated: false
 };
 
 export default {
   user: createReducer(userState, {
-    [REHYDRATE](state, action) {
-      return Object.assign({}, state, action.payload.user, {
-        rehydrated: true
-      });
-    },
     [ActionTypes.USER_LOGIN_SUCCESS](state) {
-      return { ...state, logged: true };
+      return { ...state, isLoggedIn: true };
     },
     [ActionTypes.USER_LOGOUT_SUCCESS](state) {
-      return { ...state, logged: false };
+      return { ...state, isLoggedIn: false };
+    },
+    ["FAKE_LOGIN"](state) {
+      return { ...state, isLoggedIn: true };
     }
   })
 };

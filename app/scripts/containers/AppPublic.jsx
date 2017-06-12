@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import SystemNotifications from 'components/SystemNotifications';
+import SystemNotifications from "components/SystemNotifications";
 
 export default class AppPublic extends React.Component {
   static propTypes = {
@@ -18,4 +18,3 @@ export default class AppPublic extends React.Component {
     );
   }
 }
-

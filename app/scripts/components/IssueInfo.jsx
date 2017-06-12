@@ -1,74 +1,154 @@
-import React, { Component } from 'react'
-import Affix from 'react-overlays/lib/Affix'
+import React, { Component } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
+import Collapsible from "react-collapsible";
+import Issue2 from "./Issue2";
+import DropZone from "./DropZone";
+import { Button } from "react-bootstrap";
 
-const renameStatus = (status) => {
+import { Link } from "react-router";
+import { push } from "react-router-redux";
+
+const renameStatus = status => {
   switch (status) {
-    case 'new':
-      return 'New';
-    case 'inProgress':
-      return 'In progress';
-    case 'done':
-      return 'Done';
+    case "new":
+      return "New";
+    case "inProgress":
+      return "In progress";
+    case "done":
+      return "Done";
     default:
       return status;
   }
-}
+};
 
-const formatDate = (date) => {
-  return (new Date(date)).toLocaleString()
-}
+const formatDate = date => {
+  return new Date(date).toLocaleString();
+};
+
+const arrows = {
+  Hightest: <p style={{ color: "red" }}><span><b>↑</b> </span>Hightest</p>,
+  Hight: <p style={{ color: "orange" }}><span><b>↗</b> </span>Hight</p>,
+  Low: <p style={{ color: "blue" }}><span><b>→</b></span> Low</p>,
+  Lowest: <p style={{ color: "black" }}><span><b>↓</b></span> Lowest</p>
+};
 
 class IssueInfo extends Component {
   constructor(props) {
     super(props);
   }
-  render() 
-  {
+  render() {
     return (
       <div>
-        {this.props.issues.map(issue =>
+        {this.props.issues.map(issue => (
           <div key={issue.id} className="issueinfo">
             <div>
-              <Affix container={this}>
-                <div className="issueinfo-header">
-                  <h5>Projectname / <a href="#">TASK-{issue.id}</a></h5>
+              <div>
+                <div>
+                  <h5>
+                    Projectname /
+                    {" "}
+                    <Link to={`/task/${issue.id}`}>TASK-{issue.id}</Link>
+                  </h5>
                   <p>Item creation</p>
                 </div>
-              </Affix>
-              <div>
-                <ul className="inline">
-                  <li>
-                    <h5>ID :</h5> <p>{issue.id}</p>
-                  </li>
-                  <li>
-                    <h5>Name :</h5> <p>{issue.name}</p>
-                  </li>
-                  <li>
-                    <h5>Issue Title :</h5> <p>{issue.title}</p>
-                  </li>
-                  <li>
-                    <h5>Assignee :</h5> <p>{issue.assignee.name}</p>
-                  </li>
-                  <li>
-                    <h5>Priority :</h5> <p>{issue.priority}</p>
-                  </li>
-                  <li>
-                    <h5>Status :</h5> <p>{renameStatus(issue.status)}</p>
-                  </li>
-                  <li>
-                    <h5>Created at :</h5> <p>{formatDate(issue.createdAt)}</p>
-                  </li>
-                  <li>
-                    <h5>Updated at :</h5> <p>{formatDate(issue.updatedAt)}</p>
-                  </li>
-                </ul>
               </div>
+              <Scrollbars autoHide style={{ height: 830, width: 500 }}>
+                <ul style={{ margin: "0 20px" }}>
+                  <Collapsible
+                    open={true}
+                    trigger={<hr className="style1 Title" />}
+                  >
+                    <div className="name">
+                      <p>Status: </p>
+                      <p>Priority: </p>
+                      <p>Component/s: </p>
+                      <p>Labels: </p>
+                      <p>Affects Version/s: </p>
+                      <p>Fix Version/s: </p>
+                      <p>Epic link: </p>
+                    </div>
+                    <div className="value">
+                      <p>{renameStatus(issue.status)}</p>
+                      {arrows[issue.priority]}
+                      <p>None</p>
+                      <p>None</p>
+                      <p>None</p>
+                      <p>None</p>
+                      <p>None</p>
+                    </div>
+                  </Collapsible>
+                  <Collapsible
+                    open={true}
+                    trigger={<hr className="style1 People" />}
+                  >
+                    <div className="name">
+                      <p>Reporter: </p>
+                      <p>Assignee: </p>
+                    </div>
+                    <div className="value">
+                      <p>Not code yet</p>
+                      <p>
+                        <img
+                          className="avatarImage"
+                          src={
+                            issue.assignee
+                              ? issue.assignee.avatarURL
+                              : "https://scontent.fhan2-2.fna.fbcdn.net/v/t1.0-9/11224574_1178319498849092_1271740388789995686_n.jpg?oh=a2a319a10cf4e95454e595ce0e962a19&oe=592DE2F6"
+                          }
+                          alt={issue.assignee.name}
+                        />
+                        {issue.assignee.name}
+                      </p>
+                    </div>
+                  </Collapsible>
+                  <Collapsible
+                    open={true}
+                    trigger={<hr className="style1 Dates" />}
+                  >
+                    <div className="name">
+                      <p>Created date: </p>
+                      <p>Updated date: </p>
+                    </div>
+                    <div className="value">
+                      <p>{formatDate(issue.createdAt)}</p>
+                      <p>{formatDate(issue.updatedAt)}</p>
+                    </div>
+                  </Collapsible>
+                  <Collapsible
+                    open={true}
+                    trigger={<hr className="style1 Description" />}
+                  >
+                    <div className="name" />
+                    <div className="value">
+                      <p>Item creation feature </p>
+                    </div>
+                  </Collapsible>
+                  <Collapsible
+                    open={true}
+                    trigger={<hr className="style1 Comments" />}
+                  >
+                    <div className="value">
+                      {issue.comment
+                        ? issue.comment
+                        : "There are no comments yet on this issue"}
+                    </div>
+                  </Collapsible>
+                  <Collapsible
+                    open={true}
+                    trigger={<hr className="style1 Attachments" />}
+                  >
+                    <div>
+                      <DropZone />
+                    </div>
+                  </Collapsible>
+                </ul>
+              </Scrollbars>
             </div>
           </div>
-        )}
+        ))}
       </div>
-    )
+    );
   }
 }
 
-export default IssueInfo
+export default IssueInfo;

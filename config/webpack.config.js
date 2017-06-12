@@ -27,7 +27,8 @@ var config = {
   },
   devtool: '#inline-source-map',
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.NoErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
         context: '/',

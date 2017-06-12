@@ -1,9 +1,10 @@
 import React from 'react';
-import Test from './Test'
-import AllIssues from './AllIssues'
-import IssueInfo from './IssueInfo'
-import ParentIssueInfo from './ParentIssueInfo'
-import CuteLoading from './CuteLoading'
+import Test from './Test';
+import AllIssues from './AllIssues';
+import IssueInfo from './IssueInfo';
+import ParentIssueInfo from './ParentIssueInfo';
+import EmptyIssueInfo from '../components/EmptyIssueInfo';
+import CuteLoading from './CuteLoading';
 
 class Jira extends React.Component {
   render() {

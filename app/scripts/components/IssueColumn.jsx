@@ -11,7 +11,10 @@ const api = create({
 })
 
 const changestatus = (id, tostatus) => {
-  api.put(`/issues/${id}`, { status: `${tostatus}` }).then(rs => console.log(rs))
+  const response = api.put(`/issues/${id}`, { status: `${tostatus}` });
+  if (response.ok){
+    
+  }
 }
 
 class IssueColumn extends Component {
@@ -45,7 +48,7 @@ class IssueColumn extends Component {
       Sortable.create(componentBackingInstance, options);
     }
   };
-
+  
   render() {
     return (
       <div className="container1" ref={this.sortableContainersDecorator}>

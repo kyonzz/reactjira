@@ -1,9 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import SystemNotifications from 'components/SystemNotifications';
+import Header from "components/Header";
+import Footer from "components/Footer";
+import SystemNotifications from "components/SystemNotifications";
 
 export class AppPrivate extends React.Component {
   constructor(props) {
