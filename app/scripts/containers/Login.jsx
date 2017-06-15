@@ -35,40 +35,12 @@ const Login = React.createClass({
     };
     options = Object.assign(options, this.props.options || {});
     return (
-      <div>
-        <form>
-          <div className="form-group">
-            <label>{options.email.label}</label>
-            <input
-              type="email"
-              onChange={this.onChange}
-              className="form-control"
-              placeholder={options.email.placeholder}
-            />
-          </div>
-          <div className="form-group">
-            <label>{options.password.label}</label>
-            <input
-              type="password"
-              onChange={this.onChange}
-              className="form-control"
-              placeholder={options.password.placeholder}
-            />
-          </div>
-          <div className="checkbox">
-            <label>
-              <input type="checkbox" onChange={this.onChange} />
-              {' '}
-              {options.checkbox.text}
-            </label>
-          </div>
-          <button
-            type="submit"
-            onClick={this.onSubmit}
-            className="btn btn-default"
-          >
-            {options.submitButton.text}
-          </button>
+      <div className="wrapper">
+        <form onSubmit={this.onSubmit} className="form-signin">
+          <h2 className="form-signin-heading">Please login</h2>
+          <input type="text" className="form-control" name="username" placeholder="Email Address" required="" autoFocus="" />
+          <input type="password" className="form-control" name="password" placeholder="Password" required="" />
+          <button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
         </form>
       </div>
     );
