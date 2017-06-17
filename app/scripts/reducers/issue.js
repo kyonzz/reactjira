@@ -5,7 +5,7 @@ import { ActionTypes } from "constants/index";
 export const issueState = {
   issues: [],
   isLoading: false,
-  isLoadingSuccess: true,
+  isLoadingSuccess: false,
   onChangeGroupId: null,
   issue: {}
 };
@@ -16,7 +16,7 @@ export default {
       return { ...state, isLoading: true };
     },
     [ActionTypes.FETCH_ISSUE_SUCCESS](state, action) {
-      return { ...state, issues: action.payload, isLoading: false };
+      return { ...state, issues: action.payload, isLoading: false, isLoadingSuccess: true };
     },
     [ActionTypes.FETCH_ISSUE_FAILURE](state) {
       return { ...state, isLoading: false, isLoadingSuccess: false };

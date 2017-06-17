@@ -16,6 +16,7 @@ class AllIssues extends Component {
 
   render() {
     return (
+      this.props.isLoadingSuccess &&
       <div className="issueboard">
         <div className="sup">
           <div className="onethird">
@@ -38,57 +39,56 @@ class AllIssues extends Component {
           <Scrollbars autoHide style={{ height: 835, width: 1415 }}>
             {this.props.parentIssues
               ? this.props.parentIssues.map(issue => (
-                  <div
+                <div
+                  key={issue.id}
+                  style={{
+                    visibility: issue.id !== this.props.onChangeGroupId &&
+                      this.props.onChangeGroupId !== null
+                      ? 'hidden'
+                      : 'visible'
+                  }}
+                >
+                  <Collapsible
+                    className="what"
                     key={issue.id}
-                    style={{
-                      visibility: issue.id !== this.props.onChangeGroupId &&
-                        this.props.onChangeGroupId !== null
-                        ? 'hidden'
-                        : 'visible'
-                    }}
-                  >
-                    <Collapsible
-                      className="what"
-                      key={issue.id}
-                      open={true}
-                      trigger={
-                        <span className="inline">
-                          <h5>TASK-{issue.id} &gt; &gt; &gt; {issue.name}</h5>
+                    open={true}
+                    trigger={
+                      <span className="inline">
+                        <h5>TASK-{issue.id} &gt; &gt; &gt; {issue.name}</h5>
+                        {' '}
+                        number of child issues &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           {' '}
-                          number of child issues &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          {' '}
-                          <p
-                            className="class"
-                            onClick={() =>
-                              this.props.dispatch(selectParentIssue(issue.id))}
-                          >
-                            Action creation
+                        <p
+                          className="class"
+                          onClick={() =>
+                            this.props.dispatch(selectParentIssue(issue.id))}
+                        >
+                          Action creation
                           </p>
-                        </span>
-                      }
-                      antiTriggerClass="class"
-                      transitionTime={200}
-                    >
-                      <div className="sup">
-                        <div className="newcolumn">
-                          <IssueColumn filter="new" parent={issue.id} />
-                        </div>
-                        <div className="inProgresscolumn">
-                          <IssueColumn filter="inProgress" parent={issue.id} />
-                        </div>
-                        <div className="donecolumn">
-                          <IssueColumn filter="done" parent={issue.id} />
-                        </div>
+                      </span>
+                    }
+                    antiTriggerClass="class"
+                    transitionTime={200}
+                  >
+                    <div className="sup">
+                      <div className="newcolumn">
+                        <IssueColumn filter="new" parent={issue.id} />
                       </div>
-                    </Collapsible>
-                  </div>
-                ))
+                      <div className="inProgresscolumn">
+                        <IssueColumn filter="inProgress" parent={issue.id} />
+                      </div>
+                      <div className="donecolumn">
+                        <IssueColumn filter="done" parent={issue.id} />
+                      </div>
+                    </div>
+                  </Collapsible>
+                </div>
+              ))
               : null}
 
             {/*orther issue*/}
             <div
               style={{
-                display: this.props.isLoading ? 'none' : 'block',
                 visibility: 'superscretidforanotherissuegroup' !==
                   this.props.onChangeGroupId &&
                   this.props.onChangeGroupId !== null

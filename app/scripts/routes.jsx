@@ -9,7 +9,7 @@ import AppPrivate from 'containers/AppPrivate';
 import Home from 'containers/Home';
 import Logged from 'containers/Logged';
 import TaskFullInfo from 'containers/TaskFullInfo';
-import EnsureLoggedInContainer from 'containers/EnsureLoggedInContainer';
+import EnsureLoggedInContainer from './containers/EnsureLoggedInContainer';
 import Login from 'containers/Login';
 import NotFound from 'containers/NotFound';
 
@@ -24,8 +24,8 @@ export default function createRoutes() {
       <Route path="/" component={App}>
         <Route path="login" component={Login} />
         <Route path="Test" component={Test} />
-        <Route path="/dashboard" component={Jira} />
-        <Route path="/task/:id" component={TaskFullInfo} />
+          <Route path="/dashboard" component={Jira} />
+          <Route path="/task/:id" component={TaskFullInfo} />
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

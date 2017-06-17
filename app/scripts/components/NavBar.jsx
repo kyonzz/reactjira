@@ -21,6 +21,7 @@ class NavBar extends Component {
   };
   logout = e => {
     localStorage.setItem('isLoggedIn', false);
+    console.log(localStorage.isLoggedIn)
     this.props.dispatch({ type: ActionTypes.USER_LOGOUT_SUCCESS });
   };
   render() {

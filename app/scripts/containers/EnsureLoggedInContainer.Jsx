@@ -9,15 +9,16 @@ class EnsureLoggedInContainer extends Component {
   }
   componentDidMount() {
     const { dispatch, location } = this.props;
-
-    if (localStorage.isLoggedIn == false) {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
       dispatch(setRedirectUrl(location.pathname));
       dispatch(push('/login'));
     }
   }
-
   render() {
-    return localStorage.isLoggedIn == true ? this.props.children : null;
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    console.log(isLoggedIn)
+    return isLoggedIn ? this.props.children : null;
   }
 }
 

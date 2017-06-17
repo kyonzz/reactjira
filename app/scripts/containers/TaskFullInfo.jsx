@@ -25,11 +25,16 @@ const formatDate = date => {
 class TaskFullInfo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isEditing: false
+    }
   }
   componentDidMount() {
     this.props.dispatch(requestSingleIssue(this.props.params.id));
   }
-
+  toggleEdit = e => {
+    this.setState({ isEditing: !this.state.isEditing })
+  }
   deleteTask = e => {
     if (confirm('Delete this task')) {
       this.props.dispatch({
@@ -41,9 +46,9 @@ class TaskFullInfo extends Component {
 
   render() {
     const { issue } = this.props;
-
-    return Object.keys(issue).length > 0
-      ? <div style={{ margin: '0 20px' }}>
+    if (Object.keys(issue).length > 0) {
+      if (this.state.isEditing) {
+        return <div style={{ margin: '0 20px' }}>
           <h3>TASK DETAIL</h3>
           <div className="sup">
             <div style={{ flex: 2, minWidth: '500px' }}>
@@ -91,11 +96,74 @@ class TaskFullInfo extends Component {
             <hr className="style1 Attachments" />
             <DropZone />
           </div>
+          <button onClick={this.toggleEdit} className="btn btn-info">
+            Update info
+          </button>
           <button onClick={this.deleteTask} className="btn btn-danger">
             Delete this task
           </button>
         </div>
-      : <p>NOT FOUND THIS ISSUE</p>;
+      } else {
+        return <div style={{ margin: '0 20px' }}>
+          <h3>TASK DETAIL</h3>
+          <div className="sup">
+            <div style={{ flex: 2, minWidth: '500px' }}>
+              <hr className="style1 Details" />
+              <div style={{ display: 'flex' }}>
+                <div className="name" style={{ marginRight: 20 }}>
+                  <p>Status: </p>
+                  <p>Priority: </p>
+                  <p>Component/s: </p>
+                  <p>Labels: </p>
+                  <p>Affects Version/s: </p>
+                  <p>Fix Version/s: </p>
+                  <p>Epic link: </p>
+                </div>
+                <div className="value">
+                  <p>{renameStatus(issue.status)}</p>
+                  <p>{issue.priority}</p>
+                  <input type="text" class="form-control" placeholder=""/>
+                  <input type="text" class="form-control" placeholder=""/>
+                  <input type="text" class="form-control" placeholder=""/>
+                  <input type="text" class="form-control" placeholder=""/>
+                  <input type="text" class="form-control" placeholder=""/>
+                </div>
+              </div>
+            </div>
+            <div style={{ flex: 1, minWidth: '250px' }}>
+              <hr className="style1 People" />
+              <div style={{ display: 'flex' }}>
+                <div className="name" style={{ marginRight: 20 }}>
+                  <p>Reporter: </p>
+                  <p>Assignee: </p>
+                </div>
+                <div className="value">
+                  <p>{issue.reporter ? issue.reporter.name : 'None'}</p>
+                  <p>{issue.assignee ? issue.assignee.name : 'None'}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <hr className="style1 Description" />
+            <p>{issue.description ? issue.description : 'None'}</p>
+          </div>
+          <div>
+            <hr className="style1 Attachments" />
+            <DropZone />
+          </div>
+          <button onClick={this.toggleEdit} className="btn btn-info">
+            Update info
+          </button>
+          <button onClick={this.deleteTask} className="btn btn-danger">
+            Delete this task
+          </button>
+        </div>
+      }
+    } else {
+      return <p>NOT FOUND THIS ISSUE</p>
+    }
+
   }
 }
 

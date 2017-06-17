@@ -33,7 +33,8 @@ const mapStateToProps = state => {
   return {
     parentIssues: getParentIssues(state.issue.issues),
     onChangeGroupId: state.issue.onChangeGroupId,
-    isLoading: state.issue.isLoading
+    isLoading: state.issue.isLoading,
+    isLoadingSuccess: state.issue.isLoadingSuccess
   };
 };
 

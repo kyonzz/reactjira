@@ -13,6 +13,7 @@ const api = create({
 export function* fetchIssues() {
   yield call(delay, 1000);
   const response = yield call(api.get, '/issues');
+  yield call(console.log, response);
   if (response.ok) {
     yield put({ type: 'FETCH_ISSUE_SUCCESS', payload: response.data });
   } else {
