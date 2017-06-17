@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
@@ -25,40 +24,23 @@ class NavBar extends Component {
   };
   render() {
     return (
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="/dashboard" onClick={this.onClickLogo}>REACT JIRA</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          {/*<Nav>
-            <NavItem eventKey={1} href="#">Link</NavItem>
-            <NavItem eventKey={2} href="#">Link</NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>*/}
-          <Nav pullRight>
-            <NavItem>
-              {this.props.isLoggedIn
-                ? <p>
-                    Hello user,
-                    {' '}
-                    <Link onClick={this.logout} to="/login">
-                      click hear to logout
-                    </Link>
-                  </p>
-                : <Link to="/login">Log in</Link>}
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <nav className="navbar navbar-inverse">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <a className="navbar-brand" href="#">REACT JIRA</a>
+          </div>
+          {this.props.isLoggedIn ?
+            <ul className="nav navbar-nav navbar-right">
+              <li><Link to="/login"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+              <li><Link to="/login"><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
+            </ul>
+            :
+            <ul className="nav navbar-nav navbar-right">
+              <li><Link onClick={this.logout} to="/login"><span className="glyphicon glyphicon-log-out"></span> Logout</Link></li>
+            </ul>
+          }
+        </div>
+      </nav>
     );
   }
 }

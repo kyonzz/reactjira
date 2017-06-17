@@ -21,7 +21,7 @@ export function* login() {
     yield put({
       type: ActionTypes.USER_LOGIN_SUCCESS
     });
-    yield put(goTo('/private'));
+    yield put(goTo('/dashboard'));
   } catch (err) {
     /* istanbul ignore next */
     yield put({
@@ -41,7 +41,7 @@ export function* logout() {
     yield put({
       type: ActionTypes.USER_LOGOUT_SUCCESS
     });
-    yield put(goTo('/'));
+    yield put(goTo('/login'));
   } catch (err) {
     /* istanbul ignore next */
     yield put({

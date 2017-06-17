@@ -22,7 +22,9 @@ export default function createRoutes() {
   return (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="login" component={Login} />
+        <Route>
+          <Route path="login" component={Login} />
+        </Route>
         <Route path="Test" component={Test} />
         <Route path="/dashboard" component={Jira} />
         <Route path="/task/:id" component={TaskFullInfo} />

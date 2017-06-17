@@ -4,8 +4,7 @@ import { createReducer } from "utils/helpers";
 import { ActionTypes } from "constants/index";
 
 export const userState = {
-  isLoggedIn: false,
-  rehydrated: false
+  isLoggedIn: false
 };
 
 export default {
@@ -15,9 +14,6 @@ export default {
     },
     [ActionTypes.USER_LOGOUT_SUCCESS](state) {
       return { ...state, isLoggedIn: false };
-    },
-    ["FAKE_LOGIN"](state) {
-      return { ...state, isLoggedIn: true };
     }
   })
 };
